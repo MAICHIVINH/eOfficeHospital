@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata minClientVersion="2.14">
+    <id>Minio</id>
+    <version>7.0.0</version>
+    <authors>MinIO, Inc.</authors>
+    <license type="expression">Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <icon>icon.png</icon>
+    <readme>readme.md</readme>
+    <projectUrl>https://github.com/minio/minio-dotnet</projectUrl>
+    <description>MinIO .NET SDK for Amazon S3 Compatible Cloud Storage.</description>
+    <releaseNotes>https://github.com/minio/minio-dotnet/releases</releaseNotes>
+    <copyright>Copyright (c) Minio. All rights reserved</copyright>
+    <tags>minio cloud storage</tags>
+    <repository type="git" url="https://github.com/minio/minio-dotnet" commit="ac5dc79dfdd35b425f98233f55f8227aa705afb9" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="CommunityToolkit.HighPerformance" version="8.4.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="9.0.4" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging" version="9.0.4" exclude="Build,Analyzers" />
+        <dependency id="System.IO.Hashing" version="9.0.4" exclude="Build,Analyzers" />
+        <dependency id="System.Reactive" version="6.0.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="CommunityToolkit.HighPerformance" version="8.4.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="9.0.4" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging" version="9.0.4" exclude="Build,Analyzers" />
+        <dependency id="System.IO.Hashing" version="9.0.4" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Http" version="4.3.4" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Primitives" version="4.3.1" exclude="Build,Analyzers" />
+        <dependency id="System.Reactive" version="6.0.1" exclude="Build,Analyzers" />
+        <dependency id="System.Security.Cryptography.Algorithms" version="4.3.1" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Json" version="9.0.1" exclude="Build,Analyzers" />
+        <dependency id="System.Threading.Tasks.Extensions" version="4.6.0" exclude="Build,Analyzers" />
+        <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

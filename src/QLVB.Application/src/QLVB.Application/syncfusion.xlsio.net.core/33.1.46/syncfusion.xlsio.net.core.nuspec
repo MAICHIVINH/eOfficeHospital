@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Syncfusion.XlsIO.Net.Core</id>
+    <version>33.1.46</version>
+    <title>Create, Read and Edit Excel file in .NET Core using Syncfusion XlsIO library</title>
+    <authors>Syncfusion Inc.</authors>
+    <owners>Syncfusion Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <icon>syncfusion_logo.png</icon>
+    <projectUrl>https://www.syncfusion.com/document-sdk?utm_source=nuget&amp;utm_medium=listing</projectUrl>
+    <description>Syncfusion® Essential XlsIO is a .NET Standard Excel library that allows to create, read, and edit Excel files in .NET core application without Microsoft Office dependencies.</description>
+    <releaseNotes>https://help.syncfusion.com/document-processing/release-notes/v32.1.19?type=all</releaseNotes>
+    <copyright>Copyright 2001 - 2026 Syncfusion® Inc.</copyright>
+    <tags>syncfusion syncfusion.aspnetcore aspnetcore ej1 net-core net-standard .net core xlsio excel xls xlsx csv chart formula pivot spreadsheet worksheet</tags>
+    <readme>README.md</readme>
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="Syncfusion.Compression.Net.Core" version="33.1.46" />
+        <dependency id="Syncfusion.Licensing" version="33.1.46" />
+      </group>
+      <group targetFramework="net9.0">
+        <dependency id="Syncfusion.Compression.Net.Core" version="33.1.46" />
+        <dependency id="Syncfusion.Licensing" version="33.1.46" />
+      </group>
+      <group targetFramework="net10.0">
+        <dependency id="Syncfusion.Compression.Net.Core" version="33.1.46" />
+        <dependency id="Syncfusion.Licensing" version="33.1.46" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="NETStandard.Library" version="2.0.0" />
+        <dependency id="Syncfusion.Compression.Net.Core" version="33.1.46" />
+        <dependency id="Syncfusion.Licensing" version="33.1.46" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

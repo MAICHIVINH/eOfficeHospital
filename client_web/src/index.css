@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --shadow-clinical: 0 8px 30px rgba(0, 0, 0, 0.04);
+        --shadow-clinical-dark: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    body {
+        @apply bg-gray-50 text-gray-900 font-sans transition-colors duration-300;
+    }
+
+    .dark body {
+        @apply bg-gray-950 text-gray-100;
+    }
+}
+
+@layer components {
+
+    /* Custom scrollbar - Clinical Style */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        @apply bg-gray-50 dark:bg-gray-900/50 rounded;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        @apply bg-gray-200 dark:bg-gray-800 rounded hover:bg-primary-200 dark:hover:bg-primary-900/50 transition-colors;
+    }
+
+    /* Status badges - Medical Contrast */
+    .badge {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border transition-all duration-300;
+    }
+
+    .badge-success {
+        @apply bg-emerald-50 text-emerald-700 border-emerald-100 dark:bg-emerald-950/30 dark:text-emerald-400 dark:border-emerald-900/50 shadow-sm shadow-emerald-500/5;
+    }
+
+    .badge-warning {
+        @apply bg-amber-50 text-amber-700 border-amber-100 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-900/50 shadow-sm shadow-amber-500/5;
+    }
+
+    .badge-danger {
+        @apply bg-rose-50 text-rose-700 border-rose-100 dark:bg-rose-950/30 dark:text-rose-400 dark:border-rose-900/50 shadow-sm shadow-rose-500/5;
+    }
+
+    .badge-info {
+        @apply bg-sky-50 text-sky-700 border-sky-100 dark:bg-sky-950/30 dark:text-sky-400 dark:border-sky-900/50 shadow-sm shadow-sky-500/5;
+    }
+
+    .badge-gray {
+        @apply bg-slate-50 text-slate-600 border-slate-100 dark:bg-slate-900 dark:text-slate-400 dark:border-slate-800 shadow-sm;
+    }
+
+    /* Button styles - High End */
+    .btn {
+        @apply px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-950 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+    }
+
+    .btn-primary {
+        @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-lg shadow-primary-600/20 hover:shadow-primary-600/30 border border-primary-500/10;
+    }
+
+    .btn-secondary {
+        @apply bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 focus:ring-gray-300 shadow-sm;
+    }
+
+    /* Action buttons - Vibrant Table Variants */
+    .btn-action-primary {
+        @apply p-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 dark:hover:text-white rounded-xl shadow-sm transition-all duration-300;
+    }
+
+    .btn-action-danger {
+        @apply p-2 bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 hover:bg-rose-600 hover:text-white dark:hover:bg-rose-500 dark:hover:text-white rounded-xl shadow-sm transition-all duration-300;
+    }
+
+    .btn-action-warning {
+        @apply p-2 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-white dark:hover:bg-amber-400 dark:hover:text-white rounded-xl shadow-sm transition-all duration-300;
+    }
+
+    .btn-action-success {
+        @apply p-2 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-500 dark:hover:text-white rounded-xl shadow-sm transition-all duration-300;
+    }
+
+    .btn-action-gray {
+        @apply p-2 bg-gray-50 dark:bg-gray-800/50 text-gray-500 dark:text-gray-400 hover:bg-gray-600 hover:text-white dark:hover:bg-gray-500 dark:hover:text-white rounded-xl shadow-sm transition-all duration-300;
+    }
+
+    /* Card styles - Clean Room Aesthetic */
+    .card {
+        @apply bg-white dark:bg-gray-900 rounded-2xl shadow-[var(--shadow-clinical)] dark:shadow-[var(--shadow-clinical-dark)] border border-gray-100 dark:border-gray-800/50 overflow-hidden transition-all duration-300;
+    }
+
+    .card-header {
+        @apply px-6 py-5 border-b border-gray-50 dark:border-gray-800/50 bg-white dark:bg-gray-900/50 backdrop-blur-md;
+    }
+
+    .card-body {
+        @apply px-6 py-5;
+    }
+
+    /* Form styles - Clinical Precision */
+    .form-label {
+        @apply block text-[11px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2 transition-colors;
+    }
+
+    .form-input {
+        @apply w-full px-4 py-3 bg-gray-50/50 dark:bg-gray-950/50 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 focus:bg-white dark:focus:bg-gray-900 transition-all duration-300 shadow-inner shadow-gray-100/10;
+    }
+
+    .form-select {
+        @apply w-full px-4 py-3 bg-gray-50/50 dark:bg-gray-950/50 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 focus:bg-white dark:focus:bg-gray-900 transition-all duration-300 shadow-inner;
+    }
+
+    /* Table styles - Professional Grid */
+    .table-container {
+        @apply w-full overflow-x-auto rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm transition-all duration-300;
+    }
+
+    .table {
+        @apply w-full border-collapse text-left;
+    }
+
+    .table thead {
+        @apply bg-gray-50/80 dark:bg-gray-800/80 backdrop-blur-sm;
+    }
+
+    .table th {
+        @apply px-6 py-4 text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest border-b border-gray-100 dark:border-gray-800;
+    }
+
+    .table td {
+        @apply px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300 border-b border-gray-50 dark:border-gray-800/50 transition-colors;
+    }
+
+    .table tbody tr {
+        @apply bg-white dark:bg-gray-900 hover:bg-primary-50/30 dark:hover:bg-primary-900/10 transition-colors;
+    }
+
+    /* Modal styles - Elegant Overlays */
+    .modal-backdrop {
+        @apply fixed inset-0 bg-gray-900/60 backdrop-blur-md z-50 transition-all duration-500;
+    }
+
+    .modal-container {
+        @apply fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-6;
+    }
+
+    .modal-content {
+        @apply bg-white dark:bg-gray-950 rounded-[2rem] shadow-2xl w-full max-w-lg overflow-hidden border border-white/20 dark:border-gray-800 transition-all duration-300;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    /* TipTap Document Editor Styles */
+    .document-editor .ProseMirror {
+        outline: none;
+    }
+
+    /* Table styles inside TipTap - preserve 2-column layout */
+    .document-editor .ProseMirror table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: auto;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .document-editor .ProseMirror table td,
+    .document-editor .ProseMirror table th {
+        border: none !important;
+        padding: 2px 4px;
+        vertical-align: top;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    /* Selected cell highlight */
+    .document-editor .ProseMirror table .selectedCell::after {
+        z-index: 2;
+        position: absolute;
+        content: "";
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(59, 130, 246, 0.1);
+        pointer-events: none;
+    }
+
+    /* Block cursor */
+    .document-editor .ProseMirror p.is-editor-empty:first-child::before {
+        color: #9ca3af;
+        content: attr(data-placeholder);
+        float: left;
+        height: 0;
+        pointer-events: none;
+    }
+
+    /* HR style inside template */
+    .document-editor .ProseMirror hr {
+        border: none;
+        border-top: 1px solid #000;
+        margin: 10px auto;
+        /* Width is controlled by template inline styles or defaults to 100% if not specified */
+    }
+
+    /* ── A4 Document Layout Styles ── */
+    .a4-editor-canvas {
+        @apply bg-gray-200/50 dark:bg-gray-950/80 p-8 flex justify-center overflow-x-auto custom-scrollbar;
+    }
+
+    .tiptap-a4-page {
+        background-color: white;
+        width: 210mm;
+        min-height: 297mm;
+        padding-top: 20mm;
+        padding-right: 20mm;
+        padding-bottom: 20mm;
+        padding-left: 30mm;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1), 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        margin: 0 auto;
+        color: #111;
+        outline: none;
+        box-sizing: border-box;
+    }
+
+    .dark .tiptap-a4-page {
+        /* Keep page white even in dark mode for true document preview */
+        background-color: #fff;
+        color: #111;
+    }
+
+    /* Drawer (side panel) slide-in from right */
+    @keyframes drawerSlideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0.6;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .drawer-slide-in {
+        animation: drawerSlideIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+}

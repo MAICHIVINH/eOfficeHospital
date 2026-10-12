@@ -1,0 +1,17 @@
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/node_modules
+**/dist
+.git
+.github
+*.user
+docker-compose.yml
+docker-compose.override.yml
+Dockerfile
+.dockerignore
+
+# Ensure local build folders are not ignored
+!publish/
+!local_build/

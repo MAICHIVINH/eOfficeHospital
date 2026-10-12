@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>WebDriverBiDi</id>
+    <version>0.0.45</version>
+    <title>WebDriver BiDirectional Client Library</title>
+    <authors>WebDriverBiDi.NET Committers</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <readme>README.md</readme>
+    <description>A .NET client library for the WebDriver BiDi protocol.</description>
+    <repository type="git" url="https://github.com/webdriverbidi-net/webdriverbidi-net" commit="f779b1e911ede5c9d326a933bf152b1f993fa38d" />
+    <dependencies>
+      <group targetFramework="net8.0" />
+      <group targetFramework="net9.0" />
+      <group targetFramework="net10.0" />
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="System.Text.Json" version="10.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Threading.Channels" version="10.0.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

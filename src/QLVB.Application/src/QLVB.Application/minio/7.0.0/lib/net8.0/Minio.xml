@@ -1,0 +1,2574 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Minio</name>
+    </assembly>
+    <members>
+        <member name="M:Minio.MinioClient.ListBucketsAsync(System.Threading.CancellationToken)">
+            <summary>
+                List all the buckets for the current Endpoint URL
+            </summary>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Task with an iterator lazily populated with objects</returns>
+        </member>
+        <member name="M:Minio.MinioClient.BucketExistsAsync(Minio.DataModel.Args.BucketExistsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Check if a private bucket with the given name exists.
+            </summary>
+            <param name="args">BucketExistsArgs Arguments Object which has bucket identifier information - bucket name, region</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:System.Data.NoNullAllowedException"></exception>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveBucketAsync(Minio.DataModel.Args.RemoveBucketArgs,System.Threading.CancellationToken)">
+            <summary>
+                Remove the bucket with the given name.
+            </summary>
+            <param name="args">RemoveBucketArgs Arguments Object which has bucket identifier information like bucket name .etc.</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucketName is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucketName is not found</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucketName is null</exception>
+        </member>
+        <member name="M:Minio.MinioClient.MakeBucketAsync(Minio.DataModel.Args.MakeBucketArgs,System.Threading.CancellationToken)">
+            <summary>
+                Create a bucket with the given name.
+            </summary>
+            <param name="args">MakeBucketArgs Arguments Object that has bucket info like name, location. etc</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucketName is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When object-lock or another extension is not implemented</exception>
+        </member>
+        <member name="M:Minio.MinioClient.GetVersioningAsync(Minio.DataModel.Args.GetVersioningArgs,System.Threading.CancellationToken)">
+            <summary>
+                Get Versioning information on the bucket with given bucket name
+            </summary>
+            <param name="args">GetVersioningArgs takes bucket as argument. </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> GetVersioningResponse with information populated from REST response </returns>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucketName is invalid</exception>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.MinioClient.SetVersioningAsync(Minio.DataModel.Args.SetVersioningArgs,System.Threading.CancellationToken)">
+            <summary>
+                Set Versioning as specified on the bucket with given bucket name
+            </summary>
+            <param name="args">SetVersioningArgs Arguments Object with information like Bucket name, Versioning configuration</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.ListObjectsEnumAsync(Minio.DataModel.Args.ListObjectsArgs,System.Threading.CancellationToken)">
+            <summary>
+                List all objects along with versions non-recursively in a bucket with a given prefix, optionally emulating a
+                directory
+            </summary>
+            <param name="args">
+                ListObjectsArgs Arguments Object with information like Bucket name, prefix, recursive listing,
+                versioning
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>An observable of items that client can subscribe to</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">If a functionality or extension (like versioning) is not implemented</exception>
+            <exception cref="T:System.InvalidOperationException">
+                For example, if you call ListObjectsAsync on a bucket with versioning
+                enabled or object lock enabled
+            </exception>
+        </member>
+        <member name="M:Minio.MinioClient.GetBucketNotificationsAsync(Minio.DataModel.Args.GetBucketNotificationsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Gets notification configuration for this bucket
+            </summary>
+            <param name="args">GetBucketNotificationsArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.MinioClient.SetBucketNotificationsAsync(Minio.DataModel.Args.SetBucketNotificationsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the notification configuration for this bucket
+            </summary>
+            <param name="args">
+                SetBucketNotificationsArgs Arguments Object with information like Bucket name, notification object
+                with configuration to set
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveAllBucketNotificationsAsync(Minio.DataModel.Args.RemoveAllBucketNotificationsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes all bucket notification configurations stored on the server.
+            </summary>
+            <param name="args">RemoveAllBucketNotificationsArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.ListenBucketNotificationsAsync(Minio.DataModel.Args.ListenBucketNotificationsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Subscribes to bucket change notifications (a Minio-only extension)
+            </summary>
+            <param name="args">
+                ListenBucketNotificationsArgs Arguments Object with information like Bucket name, listen events,
+                prefix filter keys, suffix filter keys
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>An observable of JSON-based notification events</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.GetBucketTagsAsync(Minio.DataModel.Args.GetBucketTagsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Gets Tagging values set for this bucket
+            </summary>
+            <param name="args">GetBucketTagsArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Tagging Object with key-value tag pairs</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.MinioClient.SetBucketEncryptionAsync(Minio.DataModel.Args.SetBucketEncryptionArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the Encryption Configuration for the mentioned bucket.
+            </summary>
+            <param name="args">SetBucketEncryptionArgs Arguments Object with information like Bucket name, encryption config</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.GetBucketEncryptionAsync(Minio.DataModel.Args.GetBucketEncryptionArgs,System.Threading.CancellationToken)">
+            <summary>
+                Returns the Encryption Configuration for the mentioned bucket.
+            </summary>
+            <param name="args">GetBucketEncryptionArgs Arguments Object encapsulating information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> An object of type ServerSideEncryptionConfiguration </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveBucketEncryptionAsync(Minio.DataModel.Args.RemoveBucketEncryptionArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes the Encryption Configuration for the mentioned bucket.
+            </summary>
+            <param name="args">RemoveBucketEncryptionArgs Arguments Object encapsulating information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.SetBucketTagsAsync(Minio.DataModel.Args.SetBucketTagsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the Tagging values for this bucket
+            </summary>
+            <param name="args">SetBucketTagsArgs Arguments Object with information like Bucket name, tag key-value pairs</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveBucketTagsAsync(Minio.DataModel.Args.RemoveBucketTagsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes Tagging values stored for the bucket.
+            </summary>
+            <param name="args">RemoveBucketTagsArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.SetObjectLockConfigurationAsync(Minio.DataModel.Args.SetObjectLockConfigurationArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the Object Lock Configuration on this bucket
+            </summary>
+            <param name="args">
+                SetObjectLockConfigurationArgs Arguments Object with information like Bucket name, object lock
+                configuration to set
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.GetObjectLockConfigurationAsync(Minio.DataModel.Args.GetObjectLockConfigurationArgs,System.Threading.CancellationToken)">
+            <summary>
+                Gets the Object Lock Configuration on this bucket
+            </summary>
+            <param name="args">GetObjectLockConfigurationArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>ObjectLockConfiguration object</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveObjectLockConfigurationAsync(Minio.DataModel.Args.RemoveObjectLockConfigurationArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes the Object Lock Configuration on this bucket
+            </summary>
+            <param name="args">RemoveObjectLockConfigurationArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.SetBucketLifecycleAsync(Minio.DataModel.Args.SetBucketLifecycleArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the Lifecycle configuration for this bucket
+            </summary>
+            <param name="args">
+                SetBucketLifecycleArgs Arguments Object with information like Bucket name, Lifecycle configuration
+                object
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.GetBucketLifecycleAsync(Minio.DataModel.Args.GetBucketLifecycleArgs,System.Threading.CancellationToken)">
+            <summary>
+                Gets Lifecycle configuration set for this bucket returned in an object
+            </summary>
+            <param name="args">GetBucketLifecycleArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>LifecycleConfiguration Object with the lifecycle configuration</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveBucketLifecycleAsync(Minio.DataModel.Args.RemoveBucketLifecycleArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes Lifecycle configuration stored for the bucket.
+            </summary>
+            <param name="args">RemoveBucketLifecycleArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.GetBucketReplicationAsync(Minio.DataModel.Args.GetBucketReplicationArgs,System.Threading.CancellationToken)">
+            <summary>
+                Get Replication configuration for the bucket
+            </summary>
+            <param name="args">GetBucketReplicationArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Replication configuration object</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.MissingBucketReplicationConfigurationException">When bucket replication configuration is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.MinioClient.SetBucketReplicationAsync(Minio.DataModel.Args.SetBucketReplicationArgs,System.Threading.CancellationToken)">
+            <summary>
+                Set the Replication configuration for the bucket
+            </summary>
+            <param name="args">
+                SetBucketReplicationArgs Arguments Object with information like Bucket name, Replication
+                Configuration object
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.MissingBucketReplicationConfigurationException">When bucket replication configuration is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveBucketReplicationAsync(Minio.DataModel.Args.RemoveBucketReplicationArgs,System.Threading.CancellationToken)">
+            <summary>
+                Remove Replication configuration for the bucket.
+            </summary>
+            <param name="args">RemoveBucketReplicationArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.MissingBucketReplicationConfigurationException">When bucket replication configuration is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.MinioClient.ListenNotifications(Minio.DataModel.Args.ListenBucketNotificationsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Subscribes to global change notifications (a Minio-only extension)
+            </summary>
+            <param name="args">ListenBucketNotificationsArgs to listen events</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>An observable of JSON-based notification events</returns>
+        </member>
+        <member name="M:Minio.MinioClient.ListenBucketNotificationsAsync(System.String,System.Collections.Generic.IList{Minio.DataModel.Notification.EventType},System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+                Subscribes to bucket change notifications (a Minio-only extension)
+            </summary>
+            <param name="bucketName">Bucket to get notifications from</param>
+            <param name="events">Events to listen for</param>
+            <param name="prefix">Filter keys starting with this prefix</param>
+            <param name="suffix">Filter keys ending with this suffix</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>An observable of JSON-based notification events</returns>
+        </member>
+        <member name="M:Minio.MinioClient.GetPolicyAsync(Minio.DataModel.Args.GetPolicyArgs,System.Threading.CancellationToken)">
+            <summary>
+                Returns current policy stored on the server for this bucket
+            </summary>
+            <param name="args">GetPolicyArgs object has information like Bucket name.</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Task that returns the Bucket policy as a json string</returns>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucketName is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.UnexpectedMinioException">When a policy is not set</exception>
+        </member>
+        <member name="M:Minio.MinioClient.SetPolicyAsync(Minio.DataModel.Args.SetPolicyArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the current bucket policy
+            </summary>
+            <param name="args">SetPolicyArgs object has information like Bucket name and the policy to set in Json format</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucketName is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.UnexpectedMinioException">When a policy is not set</exception>
+            <returns>Task to set a policy</returns>
+        </member>
+        <member name="M:Minio.MinioClient.RemovePolicyAsync(Minio.DataModel.Args.RemovePolicyArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes the current bucket policy
+            </summary>
+            <param name="args">RemovePolicyArgs object has information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Task to set a policy</returns>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucketName is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.UnexpectedMinioException">When a policy is not set</exception>
+        </member>
+        <member name="M:Minio.MinioClient.GetObjectAsync(Minio.DataModel.Args.GetObjectArgs,System.Threading.CancellationToken)">
+            <summary>
+                Get an object. The object will be streamed to the callback given by the user.
+            </summary>
+            <param name="args">
+                GetObjectArgs Arguments Object encapsulates information like - bucket name, object name, server-side
+                encryption object, action stream, length, offset
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:System.IO.DirectoryNotFoundException">If the directory to copy to is not found</exception>
+        </member>
+        <member name="M:Minio.MinioClient.SelectObjectContentAsync(Minio.DataModel.Args.SelectObjectContentArgs,System.Threading.CancellationToken)">
+            <summary>
+                Select an object's content. The object will be streamed to the callback given by the user.
+            </summary>
+            <param name="args">
+                SelectObjectContentArgs Arguments Object which encapsulates bucket name, object name, Select Object
+                Options
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+        </member>
+        <member name="M:Minio.MinioClient.ListIncompleteUploadsEnumAsync(Minio.DataModel.Args.ListIncompleteUploadsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Lists all incomplete uploads in a given bucket and prefix recursively
+            </summary>
+            <param name="args">ListIncompleteUploadsArgs Arguments Object which encapsulates bucket name, prefix, recursive</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>A lazily populated list of incomplete uploads</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveIncompleteUploadAsync(Minio.DataModel.Args.RemoveIncompleteUploadArgs,System.Threading.CancellationToken)">
+            <summary>
+                Remove incomplete uploads from a given bucket and objectName
+            </summary>
+            <param name="args">RemoveIncompleteUploadArgs Arguments Object which encapsulates bucket, object names</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.PresignedGetObjectAsync(Minio.DataModel.Args.PresignedGetObjectArgs)">
+            <summary>
+                Presigned get url - returns a presigned url to access an object's data without credentials.URL can have a maximum
+                expiry of
+                up to 7 days or a minimum of 1 second.Additionally, you can override a set of response headers using reqParams.
+            </summary>
+            <param name="args">
+                PresignedGetObjectArgs Arguments object encapsulating bucket and object names, expiry time, response
+                headers, request date
+            </param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+        </member>
+        <member name="M:Minio.MinioClient.PresignedPostPolicyAsync(Minio.DataModel.Args.PresignedPostPolicyArgs)">
+            <summary>
+                Presigned post policy
+            </summary>
+            <param name="args">PresignedPostPolicyArgs Arguments object encapsulating Policy, Expiry, Region, </param>
+            <returns>Tuple of URI and Policy Form data</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.PresignedPutObjectAsync(Minio.DataModel.Args.PresignedPutObjectArgs)">
+            <summary>
+                Presigned Put url -returns a presigned url to upload an object without credentials.URL can have a maximum expiry of
+                upto 7 days or a minimum of 1 second.
+            </summary>
+            <param name="args">PresignedPutObjectArgs Arguments Object which encapsulates bucket, object names, expiry</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.GetObjectLegalHoldAsync(Minio.DataModel.Args.GetObjectLegalHoldArgs,System.Threading.CancellationToken)">
+            <summary>
+                Get the configuration object for Legal Hold Status
+            </summary>
+            <param name="args">
+                GetObjectLegalHoldArgs Arguments Object which has object identifier information - bucket name,
+                object name, version ID
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation </param>
+            <returns> True if Legal Hold is ON, false otherwise  </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.SetObjectLegalHoldAsync(Minio.DataModel.Args.SetObjectLegalHoldArgs,System.Threading.CancellationToken)">
+            <summary>
+                Set the Legal Hold Status using the related configuration
+            </summary>
+            <param name="args">
+                SetObjectLegalHoldArgs Arguments Object which has object identifier information - bucket name,
+                object name, version ID
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.GetObjectTagsAsync(Minio.DataModel.Args.GetObjectTagsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Gets Tagging values set for this object
+            </summary>
+            <param name="args"> GetObjectTagsArgs Arguments Object with information like Bucket, Object name, (optional)version Id</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Tagging Object with key-value tag pairs</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveObjectAsync(Minio.DataModel.Args.RemoveObjectArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes an object with given name in specific bucket
+            </summary>
+            <param name="args">
+                RemoveObjectArgs Arguments Object encapsulates information like - bucket name, object name, optional
+                list of versions to be deleted
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Task</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveObjectsAsync(Minio.DataModel.Args.RemoveObjectsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes list of objects from bucket
+            </summary>
+            <param name="args">
+                RemoveObjectsArgs Arguments Object encapsulates information like - bucket name, List of objects,
+                optional list of versions (for each object) to be deleted
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Observable that returns delete error while deleting objects if any</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.SetObjectTagsAsync(Minio.DataModel.Args.SetObjectTagsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the Tagging values for this object
+            </summary>
+            <param name="args">
+                SetObjectTagsArgs Arguments Object with information like Bucket name,Object name, (optional)version
+                Id, tag key-value pairs
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveObjectTagsAsync(Minio.DataModel.Args.RemoveObjectTagsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes Tagging values stored for the object
+            </summary>
+            <param name="args">RemoveObjectTagsArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.SetObjectRetentionAsync(Minio.DataModel.Args.SetObjectRetentionArgs,System.Threading.CancellationToken)">
+            <summary>
+                Set the Retention using the configuration object
+            </summary>
+            <param name="args">
+                SetObjectRetentionArgs Arguments Object which has object identifier information - bucket name,
+                object name, version ID
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.GetObjectRetentionAsync(Minio.DataModel.Args.GetObjectRetentionArgs,System.Threading.CancellationToken)">
+            <summary>
+                Get the Retention configuration for the object
+            </summary>
+            <param name="args">
+                GetObjectRetentionArgs Arguments Object which has object identifier information - bucket name,
+                object name, version ID
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+        </member>
+        <member name="M:Minio.MinioClient.ClearObjectRetentionAsync(Minio.DataModel.Args.ClearObjectRetentionArgs,System.Threading.CancellationToken)">
+            <summary>
+                Clears the Retention configuration for the object
+            </summary>
+            <param name="args">
+                ClearObjectRetentionArgs Arguments Object which has object identifier information - bucket name,
+                object name, version ID
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.PutObjectAsync(Minio.DataModel.Args.PutObjectArgs,System.Threading.CancellationToken)">
+            <summary>
+                Creates object in a bucket fom input stream or filename.
+            </summary>
+            <param name="args">
+                PutObjectArgs Arguments object encapsulating bucket name, object name, file name, object data
+                stream, object size, content type.
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.IO.FileNotFoundException">If the file to copy from not found</exception>
+            <exception cref="T:System.ObjectDisposedException">The file stream has been disposed</exception>
+            <exception cref="T:System.NotSupportedException">The file stream cannot be read from</exception>
+            <exception cref="T:System.InvalidOperationException">The file stream is currently in a read operation</exception>
+            <exception cref="T:Minio.Exceptions.AccessDeniedException">For encrypted PUT operation, Access is denied if the key is wrong</exception>
+        </member>
+        <member name="M:Minio.MinioClient.CopyObjectAsync(Minio.DataModel.Args.CopyObjectArgs,System.Threading.CancellationToken)">
+            <summary>
+                Copy a source object into a new destination object.
+            </summary>
+            <param name="args">
+                CopyObjectArgs Arguments Object which encapsulates bucket name, object name, destination bucket,
+                destination object names, Copy conditions object, metadata, SSE source, destination objects
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.AccessDeniedException">For encrypted copy operation, Access is denied if the key is wrong</exception>
+        </member>
+        <member name="M:Minio.MinioClient.PresignedPostPolicyAsync(Minio.DataModel.PostPolicy)">
+            <summary>
+                Presigned post policy
+            </summary>
+            <param name="policy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.MinioClient.StatObjectAsync(Minio.DataModel.Args.StatObjectArgs,System.Threading.CancellationToken)">
+            <summary>
+                Tests the object's existence and returns metadata about existing objects.
+            </summary>
+            <param name="args">
+                StatObjectArgs Arguments Object encapsulates information like - bucket name, object name,
+                server-side encryption object
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Facts about the object</returns>
+        </member>
+        <member name="M:Minio.MinioClient.GetMultipartUploadsListAsync(Minio.DataModel.Args.GetMultipartUploadsListArgs,System.Threading.CancellationToken)">
+            <summary>
+                Get list of multi-part uploads matching particular uploadIdMarker
+            </summary>
+            <param name="args">GetMultipartUploadsListArgs Arguments Object which encapsulates bucket name, prefix, recursive</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveUploadAsync(Minio.DataModel.Args.RemoveUploadArgs,System.Threading.CancellationToken)">
+            <summary>
+                Remove object with matching uploadId from bucket
+            </summary>
+            <param name="args">RemoveUploadArgs Arguments Object which encapsulates bucket, object names, upload Id</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.MinioClient.PutObjectSinglePartAsync(Minio.DataModel.Args.PutObjectArgs,System.Threading.CancellationToken,System.Boolean)">
+            <summary>
+                Upload object part to bucket for particular uploadId
+            </summary>
+            <param name="args">
+                PutObjectArgs encapsulates bucket name, object name, upload id, part number, object data(body),
+                Headers, SSE Headers
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <param name="singleFile">
+                This boolean parameter differentiates single part file upload and
+                multi part file upload as this function is shared by both.
+            </param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.ObjectDisposedException">The file stream has been disposed</exception>
+            <exception cref="T:System.NotSupportedException">The file stream cannot be read from</exception>
+            <exception cref="T:System.InvalidOperationException">The file stream is currently in a read operation</exception>
+            <exception cref="T:Minio.Exceptions.AccessDeniedException">For encrypted PUT operation, Access is denied if the key is wrong</exception>
+        </member>
+        <member name="M:Minio.MinioClient.PutObjectPartAsync(Minio.DataModel.Args.PutObjectPartArgs,System.Threading.CancellationToken)">
+            <summary>
+                Upload object in multiple parts. Private Helper function
+            </summary>
+            <param name="args">PutObjectPartArgs encapsulates bucket name, object name, upload id, part number, object data(body)</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.ObjectDisposedException">The file stream has been disposed</exception>
+            <exception cref="T:System.NotSupportedException">The file stream cannot be read from</exception>
+            <exception cref="T:System.InvalidOperationException">The file stream is currently in a read operation</exception>
+            <exception cref="T:Minio.Exceptions.AccessDeniedException">For encrypted PUT operation, Access is denied if the key is wrong</exception>
+        </member>
+        <member name="M:Minio.MinioClient.MultipartCopyUploadAsync(Minio.DataModel.Args.MultipartCopyUploadArgs,System.Threading.CancellationToken)">
+            <summary>
+                Make a multi part copy upload for objects larger than 5GB or if CopyCondition specifies a byte range.
+            </summary>
+            <param name="args">
+                MultipartCopyUploadArgs Arguments object encapsulating destination and source bucket, object names,
+                copy conditions, size, metadata, SSE
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.AccessDeniedException">For encrypted copy operation, Access is denied if the key is wrong</exception>
+        </member>
+        <member name="M:Minio.MinioClient.NewMultipartUploadAsync(Minio.DataModel.Args.NewMultipartUploadPutArgs,System.Threading.CancellationToken)">
+            <summary>
+                Start a new multi-part upload request
+            </summary>
+            <param name="args">
+                NewMultipartUploadPutArgs arguments object encapsulating bucket name, object name, Headers, SSE
+                Headers
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.AccessDeniedException">For encrypted copy operation, Access is denied if the key is wrong</exception>
+        </member>
+        <member name="M:Minio.MinioClient.NewMultipartUploadAsync(Minio.DataModel.Args.NewMultipartUploadCopyArgs,System.Threading.CancellationToken)">
+            <summary>
+                Start a new multi-part copy upload request
+            </summary>
+            <param name="args">
+                NewMultipartUploadCopyArgs arguments object encapsulating bucket name, object name, Headers, SSE
+                Headers
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.AccessDeniedException">For encrypted copy operation, Access is denied if the key is wrong</exception>
+        </member>
+        <member name="M:Minio.MinioClient.CopyObjectRequestAsync(Minio.DataModel.Args.CopyObjectRequestArgs,System.Threading.CancellationToken)">
+            <summary>
+                Create the copy request, execute it and return the copy result.
+            </summary>
+            <param name="args"> CopyObjectRequestArgs Arguments Object encapsulating </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+        </member>
+        <member name="M:Minio.MinioClient.CompleteMultipartUploadAsync(Minio.DataModel.Args.CompleteMultipartUploadArgs,System.Threading.CancellationToken)">
+            <summary>
+                Internal method to complete multi part upload of object to server.
+            </summary>
+            <param name="args">CompleteMultipartUploadArgs Arguments object with bucket name, object name, upload id, Etags</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.AccessDeniedException">For encrypted copy operation, Access is denied if the key is wrong</exception>
+        </member>
+        <member name="M:Minio.MinioClient.ReadFullAsync(System.IO.Stream,System.Int32)">
+            <summary>
+                Advances in the stream upto currentPartSize or End of Stream
+            </summary>
+            <param name="data"></param>
+            <param name="currentPartSize"></param>
+            <returns>bytes read in a byte array</returns>
+        </member>
+        <member name="M:Minio.MinioClient.GetObjectHelper(Minio.DataModel.Args.GetObjectArgs,System.Threading.CancellationToken)">
+            <summary>
+                private helper method to remove list of objects from bucket
+            </summary>
+            <param name="args">GetObjectArgs Arguments Object encapsulates information like - bucket name, object name etc </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+        </member>
+        <member name="M:Minio.MinioClient.GetObjectFileAsync(Minio.DataModel.Args.GetObjectArgs,Minio.DataModel.ObjectStat,System.Threading.CancellationToken)">
+            <summary>
+                private helper method return the specified object from the bucket
+            </summary>
+            <param name="args">GetObjectArgs Arguments Object encapsulates information like - bucket name, object name etc </param>
+            <param name="objectStat"> ObjectStat object encapsulates information like - object name, size, etag etc </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+        </member>
+        <member name="M:Minio.MinioClient.GetObjectStreamAsync(Minio.DataModel.Args.GetObjectArgs,System.Threading.CancellationToken)">
+            <summary>
+                private helper method. It returns the specified portion or full object from the bucket
+            </summary>
+            <param name="args">GetObjectArgs Arguments Object encapsulates information like - bucket name, object name etc </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveBucketObjectsAsync(Minio.DataModel.Args.RemoveObjectsArgs,System.Threading.CancellationToken)">
+            <summary>
+                private helper method to remove list of objects from bucket
+            </summary>
+            <param name="args">
+                RemoveObjectsArgs Arguments Object encapsulates information like - bucket name, List of objects,
+                optional list of versions (for each object) to be deleted
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.CallRemoveObjectVersions(Minio.DataModel.Args.RemoveObjectsArgs,System.Collections.Generic.IList{System.Tuple{System.String,System.String}},System.Collections.Generic.List{Minio.Exceptions.DeleteError},System.Threading.CancellationToken)">
+            <summary>
+                private helper method to call remove objects function
+            </summary>
+            <param name="args">
+                RemoveObjectsArgs Arguments Object encapsulates information like - bucket name, List of objects,
+                optional version Id list
+            </param>
+            <param name="objVersions">List of Tuples. Each tuple is Object name to List of Version IDs to be deleted</param>
+            <param name="fullErrorsList">
+                Full List of DeleteError objects. The error list from this call will be added to the full
+                list.
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.MinioClient.CallRemoveObjects(Minio.DataModel.Args.RemoveObjectsArgs,System.Collections.Generic.IList{System.String},System.Collections.Generic.List{Minio.Exceptions.DeleteError},System.Threading.CancellationToken)">
+            <summary>
+                private helper method to call function to remove objects/version items in iterations of 1000 each from bucket
+            </summary>
+            <param name="args">
+                RemoveObjectsArgs Arguments Object encapsulates information like - bucket name, List of objects,
+                optional list of versions (for each object) to be deleted
+            </param>
+            <param name="objNames">List of Object names to be deleted</param>
+            <param name="fullErrorsList">
+                Full List of DeleteError objects. The error list from this call will be added to the full
+                list.
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveObjectVersionsHelper(Minio.DataModel.Args.RemoveObjectsArgs,System.Collections.Generic.List{Minio.Exceptions.DeleteError},System.Threading.CancellationToken)">
+            <summary>
+                private helper method to remove objects/version items in iterations of 1000 each from bucket
+            </summary>
+            <param name="args">
+                RemoveObjectsArgs Arguments Object encapsulates information like - bucket name, List of objects,
+                optional list of versions (for each object) to be deleted
+            </param>
+            <param name="fullErrorsList">
+                Full List of DeleteError objects. The error list from this call will be added to the full
+                list.
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.RemoveObjectsHelper(Minio.DataModel.Args.RemoveObjectsArgs,System.Collections.Generic.IList{Minio.Exceptions.DeleteError},System.Threading.CancellationToken)">
+            <summary>
+                private helper method to remove objects in iterations of 1000 each from bucket
+            </summary>
+            <param name="args">
+                RemoveObjectsArgs Arguments Object encapsulates information like - bucket name, List of objects,
+                optional list of versions (for each object) to be deleted
+            </param>
+            <param name="fullErrorsList">
+                Full List of DeleteError objects. The error list from this call will be added to the full
+                list.
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.MinioClient.#ctor">
+            <summary>
+                Creates and returns an MinIO Client
+            </summary>
+            <returns>Client with no arguments to be used with other builder methods</returns>
+        </member>
+        <member name="P:Minio.MinioClient.DefaultErrorHandler">
+            <summary>
+                Default error handling delegate
+            </summary>
+        </member>
+        <member name="M:Minio.MinioClient.WrapperGetAsync(System.Uri)">
+            <summary>
+                Runs httpClient's GetAsync method
+            </summary>
+        </member>
+        <member name="M:Minio.MinioClient.WrapperPutAsync(System.Uri,System.Net.Http.StreamContent)">
+            <summary>
+                Runs httpClient's PutObjectAsync method
+            </summary>
+        </member>
+        <member name="M:Minio.MinioClient.SetTraceOn(Minio.Handlers.IRequestLogger)">
+            <summary>
+                Sets HTTP tracing On.Writes output to Console
+            </summary>
+        </member>
+        <member name="M:Minio.MinioClient.SetTraceOff">
+            <summary>
+                Sets HTTP tracing Off.
+            </summary>
+        </member>
+        <member name="M:Minio.MinioClient.ParseError(Minio.DataModel.Result.ResponseResult)">
+            <summary>
+                Parse response errors if any and return relevant error messages
+            </summary>
+            <param name="response"></param>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.MakeBucketAsync(Minio.DataModel.Args.MakeBucketArgs,System.Threading.CancellationToken)">
+            <summary>
+                Create a bucket with the given name.
+            </summary>
+            <param name="args">MakeBucketArgs Arguments Object that has bucket info like name, location. etc</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucketName is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When object-lock or another extension is not implemented</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.ListBucketsAsync(System.Threading.CancellationToken)">
+            <summary>
+                List all objects in a bucket
+            </summary>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Task with an iterator lazily populated with objects</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.BucketExistsAsync(Minio.DataModel.Args.BucketExistsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Check if a private bucket with the given name exists.
+            </summary>
+            <param name="args">BucketExistsArgs Arguments Object which has bucket identifier information - bucket name, region</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.RemoveBucketAsync(Minio.DataModel.Args.RemoveBucketArgs,System.Threading.CancellationToken)">
+            <summary>
+                Remove the bucket with the given name.
+            </summary>
+            <param name="args">RemoveBucketArgs Arguments Object which has bucket identifier information like bucket name .etc.</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.ListObjectsEnumAsync(Minio.DataModel.Args.ListObjectsArgs,System.Threading.CancellationToken)">
+            <summary>
+                List all objects non-recursively in a bucket with a given prefix, optionally emulating a directory
+            </summary>
+            <param name="args">
+                ListObjectsArgs Arguments Object with information like Bucket name, prefix, recursive listing,
+                versioning
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>An observable of items that client can subscribe to</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.InvalidOperationException">
+                For example, if you call ListObjectsAsync on a bucket with versioning
+                enabled or object lock enabled
+            </exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.GetBucketNotificationsAsync(Minio.DataModel.Args.GetBucketNotificationsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Gets notification configuration for this bucket
+            </summary>
+            <param name="args">GetBucketNotificationsArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.SetBucketNotificationsAsync(Minio.DataModel.Args.SetBucketNotificationsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the notification configuration for this bucket
+            </summary>
+            <param name="args">
+                SetBucketNotificationsArgs Arguments Object with information like Bucket name, notification object
+                with configuration to set
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.RemoveAllBucketNotificationsAsync(Minio.DataModel.Args.RemoveAllBucketNotificationsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes all bucket notification configurations stored on the server.
+            </summary>
+            <param name="args">RemoveAllBucketNotificationsArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.ListenBucketNotificationsAsync(Minio.DataModel.Args.ListenBucketNotificationsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Subscribes to bucket change notifications (a Minio-only extension)
+            </summary>
+            <param name="args">
+                ListenBucketNotificationsArgs Arguments Object with information like Bucket name, listen events,
+                prefix filter keys, suffix fileter keys
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>An observable of JSON-based notification events</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.GetBucketTagsAsync(Minio.DataModel.Args.GetBucketTagsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Gets Tagging values set for this bucket
+            </summary>
+            <param name="args">GetBucketTagsArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Tagging Object with key-value tag pairs</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.SetBucketTagsAsync(Minio.DataModel.Args.SetBucketTagsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the Tagging values for this bucket
+            </summary>
+            <param name="args">SetBucketTagsArgs Arguments Object with information like Bucket name, tag key-value pairs</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.RemoveBucketTagsAsync(Minio.DataModel.Args.RemoveBucketTagsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes Tagging values stored for the bucket.
+            </summary>
+            <param name="args">RemoveBucketTagsArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.SetObjectLockConfigurationAsync(Minio.DataModel.Args.SetObjectLockConfigurationArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the Object Lock Configuration on this bucket
+            </summary>
+            <param name="args">
+                SetObjectLockConfigurationArgs Arguments Object with information like Bucket name, object lock
+                configuration to set
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.GetObjectLockConfigurationAsync(Minio.DataModel.Args.GetObjectLockConfigurationArgs,System.Threading.CancellationToken)">
+            <summary>
+                Gets the Object Lock Configuration on this bucket
+            </summary>
+            <param name="args">GetObjectLockConfigurationArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>ObjectLockConfiguration object</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.RemoveObjectLockConfigurationAsync(Minio.DataModel.Args.RemoveObjectLockConfigurationArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes the Object Lock Configuration on this bucket
+            </summary>
+            <param name="args">RemoveObjectLockConfigurationArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.GetVersioningAsync(Minio.DataModel.Args.GetVersioningArgs,System.Threading.CancellationToken)">
+            <summary>
+                Get Versioning information on the bucket with given bucket name
+            </summary>
+            <param name="args">GetVersioningArgs takes bucket as argument. </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> GetVersioningResponse with information populated from REST response </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.SetVersioningAsync(Minio.DataModel.Args.SetVersioningArgs,System.Threading.CancellationToken)">
+            <summary>
+                Set Versioning as specified on the bucket with given bucket name
+            </summary>
+            <param name="args">SetVersioningArgs Arguments Object with information like Bucket name, Versioning configuration</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.SetBucketEncryptionAsync(Minio.DataModel.Args.SetBucketEncryptionArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the Encryption Configuration for the bucket.
+            </summary>
+            <param name="args">SetBucketEncryptionArgs Arguments Object with information like Bucket name, encryption config</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.GetBucketEncryptionAsync(Minio.DataModel.Args.GetBucketEncryptionArgs,System.Threading.CancellationToken)">
+            <summary>
+                Returns the Encryption Configuration for the bucket.
+            </summary>
+            <param name="args">GetBucketEncryptionArgs Arguments Object encapsulating information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> An object of type ServerSideEncryptionConfiguration  </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.RemoveBucketEncryptionAsync(Minio.DataModel.Args.RemoveBucketEncryptionArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes the Encryption Configuration for the bucket.
+            </summary>
+            <param name="args">RemoveBucketEncryptionArgs Arguments Object encapsulating information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.SetBucketLifecycleAsync(Minio.DataModel.Args.SetBucketLifecycleArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the Lifecycle configuration for this bucket
+            </summary>
+            <param name="args">SetBucketLifecycleArgs Arguments Object with information like Bucket name, tag key-value pairs</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.GetBucketLifecycleAsync(Minio.DataModel.Args.GetBucketLifecycleArgs,System.Threading.CancellationToken)">
+            <summary>
+                Gets Lifecycle configuration set for this bucket returned in an object
+            </summary>
+            <param name="args">GetBucketLifecycleArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Lifecycle Object with key-value tag pairs</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.RemoveBucketLifecycleAsync(Minio.DataModel.Args.RemoveBucketLifecycleArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes Lifecycle configuration stored for the bucket.
+            </summary>
+            <param name="args">RemoveBucketLifecycleArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.GetBucketReplicationAsync(Minio.DataModel.Args.GetBucketReplicationArgs,System.Threading.CancellationToken)">
+            <summary>
+                Gets Replication configuration set for this bucket
+            </summary>
+            <param name="args">GetBucketReplicationArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Replication configuration object</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.MissingBucketReplicationConfigurationException">When bucket replication configuration is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.SetBucketReplicationAsync(Minio.DataModel.Args.SetBucketReplicationArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the Replication configuration for this bucket
+            </summary>
+            <param name="args">
+                SetBucketReplicationArgs Arguments Object with information like Bucket name, Replication
+                Configuration object
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.MissingBucketReplicationConfigurationException">When bucket replication configuration is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IBucketOperations.RemoveBucketReplicationAsync(Minio.DataModel.Args.RemoveBucketReplicationArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes Replication configuration stored for the bucket.
+            </summary>
+            <param name="args">RemoveBucketReplicationArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.MissingBucketReplicationConfigurationException">When bucket replication configuration is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.GetObjectLegalHoldAsync(Minio.DataModel.Args.GetObjectLegalHoldArgs,System.Threading.CancellationToken)">
+            <summary>
+                Get the configuration object for Legal Hold Status
+            </summary>
+            <param name="args">
+                GetObjectLegalHoldArgs Arguments Object which has object identifier information - bucket name,
+                object name, version ID
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation </param>
+            <returns> True if Legal Hold is ON, false otherwise  </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.SetObjectLegalHoldAsync(Minio.DataModel.Args.SetObjectLegalHoldArgs,System.Threading.CancellationToken)">
+            <summary>
+                Set the configuration for Legal Hold Status
+            </summary>
+            <param name="args">
+                SetObjectLegalHoldArgs Arguments Object which has object identifier information - bucket name,
+                object name, version ID and the status (ON/OFF) of legal-hold
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation </param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.SetObjectRetentionAsync(Minio.DataModel.Args.SetObjectRetentionArgs,System.Threading.CancellationToken)">
+            <summary>
+                Set the Retention using the configuration object
+            </summary>
+            <param name="args">
+                SetObjectRetentionArgs Arguments Object which has object identifier information - bucket name,
+                object name, version ID
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.GetObjectRetentionAsync(Minio.DataModel.Args.GetObjectRetentionArgs,System.Threading.CancellationToken)">
+            <summary>
+                Get the Retention configuration for the object
+            </summary>
+            <param name="args">
+                GetObjectRetentionArgs Arguments Object which has object identifier information - bucket name,
+                object name, version ID
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> ObjectRetentionConfiguration object which contains the Retention configuration </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.ClearObjectRetentionAsync(Minio.DataModel.Args.ClearObjectRetentionArgs,System.Threading.CancellationToken)">
+            <summary>
+                Clears the Retention configuration for the object
+            </summary>
+            <param name="args">
+                ClearObjectRetentionArgs Arguments Object which has object identifier information - bucket name,
+                object name, version ID
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns> Task </returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MissingObjectLockConfigurationException">When object lock configuration on bucket is not set</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.RemoveObjectAsync(Minio.DataModel.Args.RemoveObjectArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes an object with given name in specific bucket
+            </summary>
+            <param name="args">
+                RemoveObjectArgs Arguments Object encapsulates information like - bucket name, object name, whether
+                delete all versions
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.RemoveObjectsAsync(Minio.DataModel.Args.RemoveObjectsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes list of objects from bucket
+            </summary>
+            <param name="args">
+                RemoveObjectsArgs Arguments Object encapsulates information like - bucket name, List of objects,
+                optional list of versions (for each object) to be deleted
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Observable that returns delete error while deleting objects if any</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.CopyObjectAsync(Minio.DataModel.Args.CopyObjectArgs,System.Threading.CancellationToken)">
+            <summary>
+                Copy a source object into a new destination object.
+            </summary>
+            <param name="args">
+                CopyObjectArgs Arguments Object which encapsulates bucket name, object name, destination bucket,
+                destination object names, Copy conditions object, metadata, SSE source, destination objects
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.AccessDeniedException">For encrypted copy operation, Access is denied if the key is wrong</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.GetObjectAsync(Minio.DataModel.Args.GetObjectArgs,System.Threading.CancellationToken)">
+            <summary>
+                Get an object. The object will be streamed to the callback given by the user.
+            </summary>
+            <param name="args">
+                GetObjectArgs Arguments Object encapsulates information like - bucket name, object name, server-side
+                encryption object, action stream, length, offset
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:System.IO.DirectoryNotFoundException">If the directory to copy to is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.PutObjectAsync(Minio.DataModel.Args.PutObjectArgs,System.Threading.CancellationToken)">
+            <summary>
+                Creates object in a bucket fom input stream or filename.
+            </summary>
+            <param name="args">
+                PutObjectArgs Arguments object encapsulating bucket name, object name, file name, object data
+                stream, object size, content type.
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.IO.FileNotFoundException">If the file to copy from not found</exception>
+            <exception cref="T:System.ObjectDisposedException">The file stream has been disposed</exception>
+            <exception cref="T:System.NotSupportedException">The file stream cannot be read from</exception>
+            <exception cref="T:System.InvalidOperationException">The file stream is currently in a read operation</exception>
+            <exception cref="T:Minio.Exceptions.AccessDeniedException">For encrypted PUT operation, Access is denied if the key is wrong</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.SelectObjectContentAsync(Minio.DataModel.Args.SelectObjectContentArgs,System.Threading.CancellationToken)">
+            <summary>
+                Select an object's content. The object will be streamed to the callback given by the user.
+            </summary>
+            <param name="args">
+                SelectObjectContentArgs Arguments Object which encapsulates bucket name, object name, Select Object
+                Options
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.ListIncompleteUploadsEnumAsync(Minio.DataModel.Args.ListIncompleteUploadsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Lists all incomplete uploads in a given bucket and prefix recursively
+            </summary>
+            <param name="args">ListIncompleteUploadsArgs Arguments Object which encapsulates bucket name, prefix, recursive</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>A lazily populated list of incomplete uploads</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key provided is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.RemoveIncompleteUploadAsync(Minio.DataModel.Args.RemoveIncompleteUploadArgs,System.Threading.CancellationToken)">
+            <summary>
+                Remove incomplete uploads from a given bucket and objectName
+            </summary>
+            <param name="args">RemoveIncompleteUploadArgs Arguments Object which encapsulates bucket, object names</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.PresignedGetObjectAsync(Minio.DataModel.Args.PresignedGetObjectArgs)">
+            <summary>
+                Presigned get url - returns a presigned url to access an object's data without credentials.URL can have a maximum
+                expiry of
+                up to 7 days or a minimum of 1 second.Additionally, you can override a set of response headers using reqParams.
+            </summary>
+            <param name="args">
+                PresignedGetObjectArgs Arguments object encapsulating bucket and object names, expiry time, response
+                headers, request date
+            </param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.PresignedPostPolicyAsync(Minio.DataModel.Args.PresignedPostPolicyArgs)">
+            <summary>
+                Presigned post policy
+            </summary>
+            <param name="args">PresignedPostPolicyArgs Arguments object encapsulating Policy, Expiry, Region, </param>
+            <returns>Tuple of URI and Policy Form data</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.PresignedPutObjectAsync(Minio.DataModel.Args.PresignedPutObjectArgs)">
+            <summary>
+                Presigned Put url -returns a presigned url to upload an object without credentials.URL can have a maximum expiry of
+                upto 7 days or a minimum of 1 second.
+            </summary>
+            <param name="args">PresignedPutObjectArgs Arguments Object which encapsulates bucket, object names, expiry</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.StatObjectAsync(Minio.DataModel.Args.StatObjectArgs,System.Threading.CancellationToken)">
+            <summary>
+                Tests the object's existence and returns metadata about existing objects.
+            </summary>
+            <param name="args">
+                StatObjectArgs Arguments Object encapsulates information like - bucket name, object name,
+                server-side encryption object
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Facts about the object</returns>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.PresignedPostPolicyAsync(Minio.DataModel.PostPolicy)">
+            <summary>
+                Presigned post policy
+            </summary>
+            <param name="policy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.GetObjectTagsAsync(Minio.DataModel.Args.GetObjectTagsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Gets Tagging values set for this object
+            </summary>
+            <param name="args"> GetObjectTagsArgs Arguments Object with information like Bucket, Object name, (optional)version Id</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>Tagging Object with key-value tag pairs</returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.SetObjectTagsAsync(Minio.DataModel.Args.SetObjectTagsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Sets the Tagging values for this object
+            </summary>
+            <param name="args">
+                SetObjectTagsArgs Arguments Object with information like Bucket name,Object name, (optional)version
+                Id, tag key-value pairs
+            </param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="M:Minio.ApiEndpoints.IObjectOperations.RemoveObjectTagsAsync(Minio.DataModel.Args.RemoveObjectTagsArgs,System.Threading.CancellationToken)">
+            <summary>
+                Removes Tagging values stored for the object
+            </summary>
+            <param name="args">RemoveObjectTagsArgs Arguments Object with information like Bucket name</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns></returns>
+            <exception cref="T:Minio.Exceptions.AuthorizationException">When access or secret key is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidBucketNameException">When bucket name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.InvalidObjectNameException">When object name is invalid</exception>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucket is not found</exception>
+            <exception cref="T:System.NotImplementedException">When a functionality or extension is not implemented</exception>
+            <exception cref="T:Minio.Exceptions.ObjectNotFoundException">When object is not found</exception>
+            <exception cref="T:Minio.Exceptions.MalFormedXMLException">When configuration XML provided is invalid</exception>
+        </member>
+        <member name="T:Minio.BucketRegionCache">
+            <summary>
+                A singleton bucket/region cache map.
+            </summary>
+        </member>
+        <member name="M:Minio.BucketRegionCache.Region(System.String)">
+            <summary>
+                Returns AWS region for given bucket name.
+            </summary>
+            <param name="bucketName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.BucketRegionCache.Add(System.String,System.String)">
+            <summary>
+                Adds bucket name and its region to BucketRegionCache.
+            </summary>
+            <param name="bucketName"></param>
+            <param name="region"></param>
+        </member>
+        <member name="M:Minio.BucketRegionCache.Remove(System.String)">
+            <summary>
+                Removes region cache of the bucket if any.
+            </summary>
+            <param name="bucketName"></param>
+        </member>
+        <member name="M:Minio.BucketRegionCache.Exists(System.String)">
+            <summary>
+                Returns true if given bucket name is in the map else false.
+            </summary>
+            <param name="bucketName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.BucketRegionCache.Update(Minio.IMinioClient,System.String)">
+            <summary>
+                Updates Region cache for given bucket.
+            </summary>
+            <param name="client"></param>
+            <param name="bucketName"></param>
+        </member>
+        <member name="T:Minio.DataModel.CopyConditions">
+            <summary>
+                A container class to hold all the Conditions to be checked before copying an object.
+            </summary>
+        </member>
+        <member name="P:Minio.DataModel.CopyConditions.ByteRange">
+            <summary>
+                Get range size
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Minio.DataModel.CopyConditions.Conditions">
+            <summary>
+                Get all the set copy conditions map.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.DataModel.CopyConditions.Clone">
+            <summary>
+                Clone CopyConditions object
+            </summary>
+            <returns>new CopyConditions object</returns>
+        </member>
+        <member name="M:Minio.DataModel.CopyConditions.SetModified(System.DateTime)">
+            <summary>
+                Set modified condition, copy object modified since given time.
+            </summary>
+            <param name="date"></param>
+            <exception cref="T:System.ArgumentException">When date is null</exception>
+        </member>
+        <member name="M:Minio.DataModel.CopyConditions.SetUnmodified(System.DateTime)">
+            <summary>
+                Unset modified condition, copy object modified since given time.
+            </summary>
+            <param name="date"></param>
+            <exception cref="T:System.ArgumentException">When date is null</exception>
+        </member>
+        <member name="M:Minio.DataModel.CopyConditions.SetMatchETag(System.String)">
+            <summary>
+                Set matching ETag condition, copy object which matches
+                the following ETag.
+            </summary>
+            <param name="etag"></param>
+            <exception cref="T:System.ArgumentException">When etag is null</exception>
+        </member>
+        <member name="M:Minio.DataModel.CopyConditions.SetMatchETagNone(System.String)">
+            <summary>
+                Set matching ETag none condition, copy object which does not
+                match the following ETag.
+            </summary>
+            <param name="etag"></param>
+            <exception cref="T:System.ArgumentException">When etag is null</exception>
+        </member>
+        <member name="M:Minio.DataModel.CopyConditions.SetReplaceMetadataDirective">
+            <summary>
+                Set replace metadata directive which specifies that server side copy needs to replace metadata
+                on destination with custom metadata provided in the request.
+            </summary>
+        </member>
+        <member name="M:Minio.DataModel.CopyConditions.HasReplaceMetadataDirective">
+            <summary>
+                Return true if replace metadata directive is specified
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.DataModel.CopyConditions.SetByteRange(System.Int64,System.Int64)">
+            <summary>
+                Set Byte Range condition, copy object which falls within the
+                start and end byte range specified by user
+            </summary>
+            <param name="firstByte"></param>
+            <param name="lastByte"></param>
+            <exception cref="T:System.ArgumentException">When firstByte is null or lastByte is null</exception>
+        </member>
+        <member name="T:Minio.DataModel.Encryption.IServerSideEncryption">
+            <summary>
+                ServerSideEncryption interface
+            </summary>
+        </member>
+        <member name="T:Minio.DataModel.Encryption.SSEC">
+            <summary>
+                Server-side encryption with customer provided keys (SSE-C)
+            </summary>
+        </member>
+        <member name="T:Minio.DataModel.Encryption.SSECopy">
+            <summary>
+                Server-side encryption option for source side SSE-C copy operation
+            </summary>
+        </member>
+        <member name="T:Minio.DataModel.Encryption.SSEKMS">
+            <summary>
+                Server-side encryption with AWS KMS managed keys
+            </summary>
+        </member>
+        <member name="M:Minio.DataModel.Encryption.SSEKMS.MarshalContext">
+            <summary>
+                Serialize context into JSON string.
+            </summary>
+            <returns>Serialized JSON context</returns>
+        </member>
+        <member name="T:Minio.DataModel.Encryption.SSES3">
+            <summary>
+                Server-side encryption with S3 managed encryption keys (SSE-S3)
+            </summary>
+        </member>
+        <member name="T:Minio.DataModel.Notification.Arn">
+            <summary>
+                Arn holds ARN information that will be sent to the web service,
+                ARN desciption can be found in http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html
+            </summary>
+        </member>
+        <member name="M:Minio.DataModel.Notification.Arn.#ctor(System.String)">
+            <summary>
+                Pass valid Arn string on aws to constructor
+            </summary>
+            <param name="arnString"></param>
+        </member>
+        <member name="M:Minio.DataModel.Notification.Arn.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+                Constructs new ARN based on the given partition, service, region, account id and resource
+            </summary>
+            <param name="partition"></param>
+            <param name="service"></param>
+            <param name="region"></param>
+            <param name="accountId"></param>
+            <param name="resource"></param>
+        </member>
+        <member name="T:Minio.DataModel.Notification.BucketNotification">
+            <summary>
+                Helper class to parse NotificationConfiguration from AWS S3 response XML.
+            </summary>
+        </member>
+        <member name="M:Minio.DataModel.Notification.BucketNotification.AddTopic(Minio.DataModel.Notification.TopicConfig)">
+            <summary>
+                AddTopic adds a given topic config to the general bucket notification config
+            </summary>
+            <param name="topicConfig"></param>
+        </member>
+        <member name="M:Minio.DataModel.Notification.BucketNotification.AddQueue(Minio.DataModel.Notification.QueueConfig)">
+            <summary>
+                AddQueue adds a given queue config to the general bucket notification config
+            </summary>
+            <param name="queueConfig"></param>
+        </member>
+        <member name="M:Minio.DataModel.Notification.BucketNotification.AddLambda(Minio.DataModel.Notification.LambdaConfig)">
+            <summary>
+                AddLambda adds a given lambda config to the general bucket notification config
+            </summary>
+            <param name="lambdaConfig"></param>
+        </member>
+        <member name="M:Minio.DataModel.Notification.BucketNotification.RemoveTopicByArn(Minio.DataModel.Notification.Arn)">
+            <summary>
+                RemoveTopicByArn removes all topic configurations that match the exact specified ARN
+            </summary>
+            <param name="topicArn"></param>
+        </member>
+        <member name="M:Minio.DataModel.Notification.BucketNotification.RemoveQueueByArn(Minio.DataModel.Notification.Arn)">
+            <summary>
+                RemoveQueueByArn removes all queue configurations that match the exact specified ARN
+            </summary>
+            <param name="queueArn"></param>
+        </member>
+        <member name="M:Minio.DataModel.Notification.BucketNotification.RemoveLambdaByArn(Minio.DataModel.Notification.Arn)">
+            <summary>
+                RemoveLambdaByArn removes all lambda configurations that match the exact specified ARN
+            </summary>
+            <param name="lambdaArn"></param>
+        </member>
+        <member name="M:Minio.DataModel.Notification.BucketNotification.ShouldSerializeLambdaConfigs">
+            <summary>
+                Helper methods to guide XMLSerializer
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.DataModel.Notification.BucketNotification.ToXML">
+            <summary>
+                Serializes the notification configuration as an XML string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Minio.DataModel.Notification.EventType">
+            <summary>
+                EventType is a S3 notification event associated to the bucket notification configuration
+            </summary>
+        </member>
+        <member name="T:Minio.DataModel.Notification.FilterRule">
+            <summary>
+                FilterRule - child of S3Key, a tag in the notification xml which
+                carries suffix/prefix filters
+            </summary>
+        </member>
+        <member name="T:Minio.DataModel.Notification.LambdaConfig">
+            <summary>
+                LambdaConfig carries one single cloudfunction notification configuration
+            </summary>
+        </member>
+        <member name="T:Minio.DataModel.Notification.MinioNotification">
+            <summary>
+                Helper class to deserialize notifications generated
+                from MinioNotificaitonRaw by ListenBucketNotifications
+            </summary>
+        </member>
+        <member name="T:Minio.DataModel.Notification.MinioNotificationRaw">
+            <summary>
+                Stores raw json events generated by ListenBucketNotifications
+                The Minio client doesn't depend on a JSON library so we can let
+                the caller use a library of their choice
+            </summary>
+        </member>
+        <member name="T:Minio.DataModel.Notification.NotificationConfiguration">
+            <summary>
+                NotificationConfig - represents one single notification configuration
+                such as topic, queue or lambda configuration
+            </summary>
+        </member>
+        <member name="M:Minio.DataModel.Notification.NotificationConfiguration.AddFilterSuffix(System.String)">
+            <summary>
+                AddFilterSuffix sets the suffix configuration to the current notification config
+            </summary>
+            <param name="suffix"></param>
+        </member>
+        <member name="M:Minio.DataModel.Notification.NotificationConfiguration.AddFilterPrefix(System.String)">
+            <summary>
+                AddFilterPrefix sets the prefix configuration to the current notification config
+            </summary>
+            <param name="prefix"></param>
+        </member>
+        <member name="T:Minio.DataModel.Notification.QueueConfig">
+            <summary>
+                QueueConfig carries one single queue notification configuration
+            </summary>
+        </member>
+        <member name="T:Minio.DataModel.Notification.S3Key">
+            <summary>
+                S3Key - child of Filter, a tag in the notification xml which carries suffix/prefix
+                filters and allows filtering event notifications based on S3 Object key's name
+            </summary>
+        </member>
+        <member name="T:Minio.DataModel.Notification.TopicConfig">
+            <summary>
+                TopicConfig carries one single topic notification configuration
+            </summary>
+        </member>
+        <member name="M:Minio.DataModel.Notification.TopicConfig.Equals(System.Object)">
+            <summary>
+                Implement equality for this object
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Minio.DataModel.PostPolicy.FormData">
+            <summary>
+                Get the populated dictionary of policy data.
+            </summary>
+            <returns>Dictionary of policy data</returns>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetExpires(System.DateTime)">
+            <summary>
+                Set expiration policy.
+            </summary>
+            <param name="expiration">Expiration time for the policy</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetKey(System.String)">
+            <summary>
+                Set key policy.
+            </summary>
+            <param name="key">Object name for the policy</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetKeyStartsWith(System.String)">
+            <summary>
+                Set key prefix policy.
+            </summary>
+            <param name="keyStartsWith">Object name prefix for the policy</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetBucket(System.String)">
+            <summary>
+                Set bucket policy.
+            </summary>
+            <param name="bucket">Bucket name for the policy</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetCacheControl(System.String)">
+            <summary>
+                Set cache control
+            </summary>
+            <param name="cacheControl">CacheControl for the policy</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetContentType(System.String)">
+            <summary>
+                Set content type policy.
+            </summary>
+            <param name="contentType">ContentType for the policy</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetContentEncoding(System.String)">
+            <summary>
+                Set content encoding
+            </summary>
+            <param name="contentEncoding">ContentEncoding for the policy</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetContentLength(System.Int64)">
+            <summary>
+                Set content length
+            </summary>
+            <param name="contentLength">ContentLength for the policy</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetContentRange(System.Int64,System.Int64)">
+            <summary>
+                Set content range
+            </summary>
+            <param name="startRange">ContentRange for the policy</param>
+            <param name="endRange"></param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetSessionToken(System.String)">
+            <summary>
+                Set session token
+            </summary>
+            <param name="sessionToken">set session token</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetSuccessStatusAction(System.String)">
+            <summary>
+                Set the success action status of the object for this policy based upload.
+            </summary>
+            <param name="status">Success action status</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetUserMetadata(System.String,System.String)">
+            <summary>
+                Set user specified metadata as a key/value couple.
+            </summary>
+            <param name="key">Key and Value to insert in the metadata</param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetAlgorithm(System.String)">
+            <summary>
+                Set signature algorithm policy.
+            </summary>
+            <param name="algorithm">Set signature algorithm used for the policy</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetCredential(System.String)">
+            <summary>
+                Set credential policy.
+            </summary>
+            <param name="credential">Set credential string for the policy</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.SetDate(System.DateTime)">
+            <summary>
+                Set date policy.
+            </summary>
+            <param name="date">Set date for the policy</param>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.MarshalJSON">
+            <summary>
+                Serialize policy into JSON string.
+            </summary>
+            <returns>Serialized JSON policy</returns>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.Base64">
+            <summary>
+                Compute base64 encoded form of JSON policy.
+            </summary>
+            <returns>Base64 encoded string of JSON policy</returns>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.IsBucketSet">
+            <summary>
+                Verify if bucket is set in policy.
+            </summary>
+            <returns>true if bucket is set</returns>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.IsKeySet">
+            <summary>
+                Verify if key is set in policy.
+            </summary>
+            <returns>true if key is set</returns>
+        </member>
+        <member name="M:Minio.DataModel.PostPolicy.IsExpirationSet">
+            <summary>
+                Verify if expiration is set in policy.
+            </summary>
+            <returns>true if expiration is set</returns>
+        </member>
+        <member name="F:Minio.Helper.Constants.MaxParts">
+            <summary>
+                Maximum number of parts
+            </summary>
+        </member>
+        <member name="F:Minio.Helper.Constants.MinimumPartSize">
+            <summary>
+                Minimum part size
+            </summary>
+        </member>
+        <member name="F:Minio.Helper.Constants.MinimumPUTPartSize">
+            <summary>
+                Minimum PUT part size
+            </summary>
+        </member>
+        <member name="F:Minio.Helper.Constants.MinimumCOPYPartSize">
+            <summary>
+                Minimum COPY part size
+            </summary>
+        </member>
+        <member name="F:Minio.Helper.Constants.MaximumPartSize">
+            <summary>
+                Maximum part size
+            </summary>
+        </member>
+        <member name="F:Minio.Helper.Constants.MaximumStreamObjectSize">
+            <summary>
+                Maximum streaming object size
+            </summary>
+        </member>
+        <member name="F:Minio.Helper.Constants.MaxSinglePutObjectSize">
+            <summary>
+                maxSinglePutObjectSize - maximum size 5GiB of object per PUT operation
+            </summary>
+        </member>
+        <member name="F:Minio.Helper.Constants.MaxSingleCopyObjectSize">
+            <summary>
+                maxSingleCopyObjectSize - 5GiB
+            </summary>
+        </member>
+        <member name="F:Minio.Helper.Constants.MaxMultipartPutObjectSize">
+            <summary>
+                maxMultipartPutObjectSize - maximum size 5TiB of object for Multipart operation
+            </summary>
+        </member>
+        <member name="F:Minio.Helper.Constants.OptimalReadBufferSize">
+            <summary>
+                OptimalReadBufferSize - optimal buffer 5MiB used for reading through Read operation
+            </summary>
+        </member>
+        <member name="F:Minio.Helper.Constants.SSEGenericHeader">
+            <summary>
+                SSEGenericHeader is the AWS SSE header used for SSE-S3 and SSE-KMS.
+            </summary>
+        </member>
+        <member name="F:Minio.Helper.Constants.SSEKMSKeyId">
+            <summary>
+                SSEKMSKeyId is the AWS SSE KMS Key-Id
+            </summary>
+        </member>
+        <member name="F:Minio.Helper.Constants.SSEKMSContext">
+            <summary>
+                SSEKMSContext is the AWS SSE KMS Context.
+            </summary>
+        </member>
+        <member name="M:Minio.Helper.RegionHelper.GetRegionFromEndpoint(System.String)">
+            <summary>
+                Get corresponding region for input host.
+            </summary>
+            <param name="endpoint">S3 API endpoint</param>
+            <returns>Region corresponding to the endpoint. Default is 'us-east-1'</returns>
+        </member>
+        <member name="M:Minio.Helper.RequestUtil.ValidateEndpoint(System.Uri,System.String)">
+            <summary>
+                Validates URI to check if it is well formed. Otherwise cry foul.
+            </summary>
+        </member>
+        <member name="M:Minio.Helper.RequestUtil.IsValidEndpoint(System.String)">
+            <summary>
+                Validate Url endpoint
+            </summary>
+            <param name="endpoint"></param>
+            <returns>true/false</returns>
+        </member>
+        <member name="M:Minio.Helper.S3utils.IsValidIP(System.String)">
+            <summary>
+                IsValidIP parses input string for ip address validity.
+            </summary>
+            <param name="ip"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Minio.Helper.SyncProgress`1">
+            <summary>
+                SyncProgress is a thread-free alternative to <see cref="T:System.Progress`1" />
+                and should be used if progress needs be determined in real-time.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <remarks>
+                The upload process uses asynchronous tasks to perform the upload,
+                so these events may be invoked on an arbitrary thread. Use the
+                regular <see cref="T:System.Progress`1" /> if you need progress
+                to be reported on a fixed thread or provide your own thread
+                synchronization. Doing synchronous calls to other threads from
+                within this handler will degrade your upload performance.
+            </remarks>
+        </member>
+        <member name="M:Minio.Helper.Utils.ValidateBucketName(System.String)">
+            <summary>
+                IsValidBucketName - verify bucket name in accordance with
+                http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html
+            </summary>
+            <param name="bucketName">Bucket to test existence of</param>
+        </member>
+        <member name="M:Minio.Helper.Utils.CalculateMultiPartSize(System.Int64,System.Boolean)">
+            <summary>
+                Calculate part size and number of parts required.
+            </summary>
+            <param name="size"></param>
+            <param name="copy"> If true, use COPY part size, else use PUT part size</param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.Helper.Utils.IsValidExpiry(System.Int32)">
+            <summary>
+                Check if input expires value is valid.
+            </summary>
+            <param name="expiryInt">time to expiry in seconds</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Minio.LoggingExtensions.LogRequest(Minio.IMinioClient,System.Net.Http.HttpRequestMessage,Minio.DataModel.Result.ResponseResult,System.Double)">
+            <summary>
+                Logs the request sent to server and corresponding response
+            </summary>
+            <param name="minioClient"></param>
+            <param name="request"></param>
+            <param name="response"></param>
+            <param name="durationMs"></param>
+        </member>
+        <member name="M:Minio.MinioClientExtensions.WithSSL(Minio.IMinioClient,System.Boolean)">
+            <summary>
+                Connects to Cloud Storage with HTTPS if this method is invoked on client object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.MinioClientExtensions.WithProxy(Minio.IMinioClient,System.Net.IWebProxy)">
+            <summary>
+                Uses webproxy for all requests if this method is invoked on client object.
+            </summary>
+            <param name="minioClient">The MinioClient instance used</param>
+            <param name="proxy">Information on the proxy server in the setup.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.MinioClientExtensions.WithTimeout(Minio.IMinioClient,System.Int32)">
+            <summary>
+                Uses the set timeout for all requests if this method is invoked on client object
+            </summary>
+            <param name="minioClient">The MinioClient instance used</param>
+            <param name="timeout">Timeout in milliseconds.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.MinioClientExtensions.WithRetryPolicy(Minio.IMinioClient,Minio.Handlers.IRetryPolicyHandler)">
+            <summary>
+                Allows to add retry policy handler
+            </summary>
+            <param name="minioClient">The MinioClient instance used</param>
+            <param name="retryPolicyHandler">Delegate that will wrap execution of http client requests.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.MinioClientExtensions.WithRetryPolicy(Minio.IMinioClient,System.Func{System.Func{System.Threading.Tasks.Task{Minio.DataModel.Result.ResponseResult}},System.Threading.Tasks.Task{Minio.DataModel.Result.ResponseResult}})">
+            <summary>
+                Allows to add retry policy handler
+            </summary>
+            <param name="minioClient">The MinioClient instance used</param>
+            <param name="retryPolicyHandler">Delegate that will wrap execution of http client requests.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.MinioClientExtensions.WithHttpClient(Minio.IMinioClient,System.Net.Http.HttpClient,System.Boolean)">
+            <summary>
+                Allows end user to define the Http server and pass it as a parameter
+            </summary>
+            <param name="minioClient">The MinioClient instance used</param>
+            <param name="httpClient"> Instance of HttpClient</param>
+            <param name="disposeHttpClient"> Dispose the HttpClient when leaving</param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.MinioClientExtensions.WithCredentialsProvider(Minio.IMinioClient,Minio.Credentials.IClientProvider)">
+            <summary>
+                With provider for credentials and session token if being used
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.MinioClientExtensions.SetAppInfo(Minio.IMinioClient,System.String,System.String)">
+            <summary>
+                Sets app version and name. Used for constructing User-Agent header in all HTTP requests
+            </summary>
+            <param name="minioClient"></param>
+            <param name="appName"></param>
+            <param name="appVersion"></param>
+        </member>
+        <member name="P:Minio.MinioConfig.FullUserAgent">
+            <summary>
+                Returns the User-Agent header for the request
+            </summary>
+        </member>
+        <member name="M:Minio.RequestExtensions.WrapperPutAsync(Minio.IMinioClient,System.String,System.Net.Http.StreamContent)">
+            <summary>
+                Runs httpClient's PutObjectAsync method
+            </summary>
+        </member>
+        <member name="M:Minio.RequestExtensions.ExecuteTaskAsync(Minio.IMinioClient,Minio.HttpRequestMessageBuilder,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+                Actual doer that executes the request on the server
+            </summary>
+            <param name="minioClient"></param>
+            <param name="requestMessageBuilder">The build of HttpRequestMessageBuilder </param>
+            <param name="isSts">boolean; if true role credentials, otherwise IAM user</param>
+            <param name="cancellationToken">Optional cancellation token to cancel the operation</param>
+            <returns>ResponseResult</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Minio.RequestExtensions.CreateRequest``1(Minio.IMinioClient,Minio.DataModel.Args.BucketArgs{``0})">
+            <summary>
+                Constructs a HttpRequestMessageBuilder using bucket/object names from Args.
+                Calls overloaded CreateRequest method.
+            </summary>
+            <param name="minioClient"></param>
+            <param name="args">The direct descendant of BucketArgs class, args with populated values from Input</param>
+            <returns>A HttpRequestMessageBuilder</returns>
+        </member>
+        <member name="M:Minio.RequestExtensions.CreateRequest``1(Minio.IMinioClient,Minio.DataModel.Args.ObjectArgs{``0})">
+            <summary>
+                Constructs a HttpRequestMessage using bucket/object names from Args.
+                Calls overloaded CreateRequest method.
+            </summary>
+            <param name="minioClient"></param>
+            <param name="args">The direct descendant of ObjectArgs class, args with populated values from Input</param>
+            <returns>A HttpRequestMessage</returns>
+        </member>
+        <member name="M:Minio.RequestExtensions.CreateRequest(Minio.IMinioClient,System.Net.Http.HttpMethod,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.String,System.ReadOnlyMemory{System.Byte},System.String,System.Boolean)">
+            <summary>
+                Constructs an HttpRequestMessage builder. For AWS, this function
+                has the side-effect of overriding the baseUrl in the HttpClient
+                with region specific host path or virtual style path.
+            </summary>
+            <param name="minioClient"></param>
+            <param name="method">HTTP method</param>
+            <param name="bucketName">Bucket Name</param>
+            <param name="objectName">Object Name</param>
+            <param name="headerMap">headerMap</param>
+            <param name="contentType">Content Type</param>
+            <param name="body">request body</param>
+            <param name="resourcePath">query string</param>
+            <param name="isBucketCreationRequest">boolean to define bucket creation</param>
+            <returns>A HttpRequestMessage builder</returns>
+            <exception cref="T:Minio.Exceptions.BucketNotFoundException">When bucketName is invalid</exception>
+        </member>
+        <member name="M:Minio.RequestExtensions.ArgsCheck(Minio.DataModel.Args.RequestArgs)">
+            <summary>
+                Null Check for Args object.
+                Expected to be called from CreateRequest
+            </summary>
+            <param name="args">The child object of Args class</param>
+        </member>
+        <member name="M:Minio.RequestExtensions.GetRegion(Minio.IMinioClient,System.String)">
+            <summary>
+                Resolve region of the bucket.
+            </summary>
+            <param name="minioClient"></param>
+            <param name="bucketName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Minio.RequestExtensions.HandleIfErrorResponse(Minio.IMinioClient,Minio.DataModel.Result.ResponseResult,System.Collections.Generic.IEnumerable{Minio.Handlers.IApiResponseErrorHandler},System.Int64)">
+            <summary>
+                Delegate errors to handlers
+            </summary>
+            <param name="minioClient"></param>
+            <param name="response"></param>
+            <param name="handlers"></param>
+            <param name="startTime"></param>
+        </member>
+        <member name="T:Minio.V4Authenticator">
+            <summary>
+                V4Authenticator implements IAuthenticator interface.
+            </summary>
+        </member>
+        <member name="M:Minio.V4Authenticator.#ctor(System.Boolean,System.String,System.String,System.String,System.String)">
+            <summary>
+                Authenticator constructor.
+            </summary>
+            <param name="secure"></param>
+            <param name="accessKey">Access key id</param>
+            <param name="secretKey">Secret access key</param>
+            <param name="region">Region if specifically set</param>
+            <param name="sessionToken">sessionToken</param>
+        </member>
+        <member name="M:Minio.V4Authenticator.Authenticate(Minio.HttpRequestMessageBuilder,System.Boolean)">
+            <summary>
+                Implements Authenticate interface method for IAuthenticator.
+            </summary>
+            <param name="requestBuilder">Instantiated IRestRequest object</param>
+            <param name="isSts">boolean; if true role credentials, otherwise IAM user</param>
+        </member>
+        <member name="M:Minio.V4Authenticator.GetCredentialString(System.DateTime,System.String,System.Boolean)">
+            <summary>
+                Get credential string of form {ACCESSID}/date/region/serviceKind/aws4_request.
+            </summary>
+            <param name="signingDate">Signature initiated date</param>
+            <param name="region">Region for the credential string</param>
+            <param name="isSts">boolean; if true role credentials, otherwise IAM user</param>
+            <returns>Credential string for the authorization header</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.GetAuthorizationHeader(System.String,System.String,System.DateTime,System.String,System.Boolean)">
+            <summary>
+                Constructs an authorization header.
+            </summary>
+            <param name="signedHeaders">All signed http headers</param>
+            <param name="signature">Hexadecimally encoded computed signature</param>
+            <param name="signingDate">Date for signature to be signed</param>
+            <param name="region">Requested region</param>
+            <param name="isSts">boolean; if true role credentials, otherwise IAM user</param>
+            <returns>Fully formed authorization header</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.GetSignedHeaders(System.Collections.Generic.SortedDictionary{System.String,System.String})">
+            <summary>
+                Concatenates sorted list of signed http headers.
+            </summary>
+            <param name="headersToSign">Sorted dictionary of headers to be signed</param>
+            <returns>All signed headers</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.GetService(System.Boolean)">
+            <summary>
+                Determines and returns the kind of service
+            </summary>
+            <param name="isSts">boolean; if true role credentials, otherwise IAM user</param>
+            <returns>returns the kind of service as a string</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.GenerateSigningKey(System.String,System.DateTime,System.Boolean)">
+            <summary>
+                Generates signing key based on the region and date.
+            </summary>
+            <param name="region">Requested region</param>
+            <param name="signingDate">Date for signature to be signed</param>
+            <param name="isSts">boolean; if true role credentials, otherwise IAM user</param>
+            <returns>bytes of computed hmac</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.SignHmac(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte})">
+            <summary>
+                Compute hmac of input content with key.
+            </summary>
+            <param name="key">Hmac key</param>
+            <param name="content">Bytes to be hmac computed</param>
+            <returns>Computed hmac of input content</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.GetStringToSign(System.String,System.DateTime,System.String,System.Boolean)">
+            <summary>
+                Get string to sign.
+            </summary>
+            <param name="region">Requested region</param>
+            <param name="signingDate">Date for signature to be signed</param>
+            <param name="canonicalRequestHash">Hexadecimal encoded sha256 checksum of canonicalRequest</param>
+            <param name="isSts">boolean; if true role credentials, otherwise IAM user</param>
+            <returns>String to sign</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.GetScope(System.String,System.DateTime,System.Boolean)">
+            <summary>
+                Get scope.
+            </summary>
+            <param name="region">Requested region</param>
+            <param name="signingDate">Date for signature to be signed</param>
+            <param name="isSts">boolean; if true role credentials, otherwise IAM user</param>
+            <returns>Scope string</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.ComputeSha256(System.ReadOnlySpan{System.Byte})">
+            <summary>
+                Compute sha256 checksum.
+            </summary>
+            <param name="body">Bytes body</param>
+            <returns>Bytes of sha256 checksum</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.BytesToHex(System.ReadOnlySpan{System.Byte})">
+            <summary>
+                Convert bytes to hexadecimal string.
+            </summary>
+            <param name="checkSum">Bytes of any checksum</param>
+            <returns>Hexlified string of input bytes</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.PresignPostSignature(System.String,System.DateTime,System.String)">
+            <summary>
+                Generate signature for post policy.
+            </summary>
+            <param name="region">Requested region</param>
+            <param name="signingDate">Date for signature to be signed</param>
+            <param name="policyBase64">Base64 encoded policy JSON</param>
+            <returns>Computed signature</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.PresignURL(Minio.HttpRequestMessageBuilder,System.Int32,System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+                Presigns any input client object with a requested expiry.
+            </summary>
+            <param name="requestBuilder">Instantiated requestBuilder</param>
+            <param name="expires">Expiration in seconds</param>
+            <param name="region">Region of storage</param>
+            <param name="sessionToken">Value for session token</param>
+            <param name="reqDate"> Optional requestBuilder date and time in UTC</param>
+            <returns>Presigned url</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.GetPresignCanonicalRequest(System.Net.Http.HttpMethod,System.Uri,System.Collections.Generic.SortedDictionary{System.String,System.String})">
+            <summary>
+                Get presign canonical requestBuilder.
+            </summary>
+            <param name="requestMethod">HTTP method used for this requestBuilder</param>
+            <param name="uri">
+                Full url for this requestBuilder, including all query parameters except for headers and
+                X-Amz-Signature
+            </param>
+            <param name="headersToSign">The key-value of headers.</param>
+            <returns>Presigned canonical requestBuilder</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.GetCanonicalRequest(Minio.HttpRequestMessageBuilder,System.Collections.Generic.SortedDictionary{System.String,System.String})">
+            <summary>
+                Get canonical requestBuilder.
+            </summary>
+            <param name="requestBuilder">Instantiated requestBuilder object</param>
+            <param name="headersToSign">Dictionary of http headers to be signed</param>
+            <returns>Canonical Request</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.GetHeadersToSign(Minio.HttpRequestMessageBuilder)">
+            <summary>
+                Get headers to be signed.
+            </summary>
+            <param name="requestBuilder">Instantiated requesst</param>
+            <returns>Sorted dictionary of headers to be signed</returns>
+        </member>
+        <member name="M:Minio.V4Authenticator.SetDateHeader(Minio.HttpRequestMessageBuilder,System.DateTime)">
+            <summary>
+                Sets 'x-amz-date' http header.
+            </summary>
+            <param name="requestBuilder">Instantiated requestBuilder object</param>
+            <param name="signingDate">Date for signature to be signed</param>
+        </member>
+        <member name="M:Minio.V4Authenticator.SetHostHeader(Minio.HttpRequestMessageBuilder,System.String)">
+            <summary>
+                Set 'Host' http header.
+            </summary>
+            <param name="requestBuilder">Instantiated requestBuilder object</param>
+            <param name="hostUrl">Host url</param>
+        </member>
+        <member name="M:Minio.V4Authenticator.SetSessionTokenHeader(Minio.HttpRequestMessageBuilder,System.String)">
+            <summary>
+                Set 'X-Amz-Security-Token' http header.
+            </summary>
+            <param name="requestBuilder">Instantiated requestBuilder object</param>
+            <param name="sessionToken">session token</param>
+        </member>
+        <member name="M:Minio.V4Authenticator.SetContentSha256(Minio.HttpRequestMessageBuilder,System.Boolean)">
+            <summary>
+                Set 'x-amz-content-sha256' http header.
+            </summary>
+            <param name="requestBuilder">Instantiated requestBuilder object</param>
+            <param name="isSts">boolean; if true role credentials, otherwise IAM user</param>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute">
+            <summary>
+            Specifies the priority of a member in overload resolution. When unspecified, the default priority is 0.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute"/> class.
+            </summary>
+            <param name="priority">The priority of the attributed member. Higher numbers are prioritized, lower numbers are deprioritized. 0 is the default if no attribute is present.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute.Priority">
+            <summary>
+            The priority of the member.
+            </summary>
+        </member>
+    </members>
+</doc>
